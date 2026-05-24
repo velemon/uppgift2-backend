@@ -1,5 +1,10 @@
 import { getWork, deleteWork } from "./api.js";
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("sv-SE");
+}
+
 const list = document.getElementById("list");
 
 async function load() {
@@ -14,8 +19,8 @@ async function load() {
     <h3>${work.companyname}</h3>
     <p><strong>Roll:</strong> ${work.jobtitle}</p>
     <p><strong>Plats:</strong> ${work.location}</p>
-    <p><strong>Startdatum:</strong> ${work.startdate}</p>
-    <p><strong>Slutdatum:</strong> ${work.enddate ? work.enddate : "Pågående"}</p>
+    <p><strong>Startdatum:</strong> ${formatDate(work.startdate)}</p>
+    <p><strong>Slutdatum:</strong> ${work.enddate ? formatDate(work.enddate) : "Pågående"}</p>
     <p><strong>Beskrivning:</strong> ${work.description}</p>
     <button>Radera</button>`;
 
