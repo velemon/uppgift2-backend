@@ -1,9 +1,13 @@
 <!-- add.html - sidan för att lägga till en ny arbetslivserfarenhet -->
 <!DOCTYPE html>
 <html lang="sv">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Add post</title>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add post</title>
+    <link rel="stylesheet" href="src/style.css" />
+</head>
 
 <body>
     <nav>
@@ -22,44 +26,10 @@
         <input id="description" placeholder="Beskrivning">
         <button>Lägg till</button>
     </form>
-
+    <div id="message"></div>
     <p id="error"></p>
 
-    <!-- Importerar API-funktionerna för att hantera data och lägga till en ny arbetslivserfarenhet -->
-    <script type="module">
-        // Importerar API-funktionen för att lägga till en ny arbetslivserfarenhet
-        import { addWork } from "./src/api.js";
-
-        // Lägger till en event listener på formuläret som hanterar submit-eventet när användaren försöker lägga till en ny arbetslivserfarenhet
-        document.getElementById("form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            // Hämtar värden från formuläret och skapar ett dataobjekt som ska skickas till backend
-            const data = {
-                companyname: companyname.value.trim(),
-                jobtitle: jobtitle.value.trim(),
-                location: location.value.trim(),
-                startdate: startdate.value.trim(),
-                enddate: enddate.value.trim(),
-                description: description.value.trim()
-            };
-
-            const error = document.getElementById("error");
-
-            // Validerar att alla obligatoriska fält är ifyllda innan data skickas till backend
-            if (!data.companyname || !data.jobtitle || !data.location) {
-                error.textContent = "Fyll i alla obligatoriska fält!";
-                return;
-            }
-
-            // Anropar addWork-funktionen för att skicka data till backend och lägga till en ny arbetslivserfarenhet
-            await addWork(data);
-
-            // Visar ett meddelande om att posten har lagts till och återställer formuläret
-            error.textContent = "Tillagd!";
-            document.getElementById("form").reset();
-        });
-    </script>
+    <script type="module" src="./src/add.js"></script>
 
 </body>
 

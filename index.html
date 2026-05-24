@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="src/style.css" />
   <title>Moment 2</title>
 </head>
 
@@ -13,50 +14,12 @@
     <a href="index.html">Start</a>
     <a href="add.html">Lägg till</a>
     <a href="about.html">Om sidan</a>
-</nav>
+  </nav>
 
   <h1>Arbetslivserfarenheter</h1>
   <section id="list"></section>
 
-  <script type="module">
-    // Importerar API-funktioner för att hämta och ta bort arbetslivserfarenheter
-    import { getWork, deleteWork } from "./src/api.js";
-
-    // Funktion som laddar alla arbetslivserfarenheter och renderar dem på sidan
-    async function load() {
-      // Hämtar data från backend-API:et
-      const data = await getWork();
-      // Referens till elementet där listan ska renderas
-      const list = document.getElementById("list");
-
-      // Rensar tidigare innehåll innan ny data renderas
-      list.innerHTML = "";
-
-      // Loopar igenom varje arbetslivserfarenhet och skapar HTML-element för att visa dem
-      data.forEach(item => {
-        const div = document.createElement("div");
-
-        // Fyller elementet med information om företagsnamn, jobbtitel och plats, samt en delete-knapp
-        div.innerHTML = `
-            <h3>${item.companyname}</h3>
-            <p>${item.jobtitle}</p>
-            <p>${item.location}</p>
-            <button data-id="${item.id}">Delete</button>
-        `;
-
-        // Lägger till en event listener på delete-knappen som anropar deleteWork-funktionen och laddar om listan efter borttagning
-        div.querySelector("button").addEventListener("click", async () => {
-          await deleteWork(item.id);
-          load();
-        });
-
-        // Lägger till det skapade elementet i listan på sidan
-        list.appendChild(div);
-      });
-    }
-
-    load();
-  </script>
+  <script type="module" src="./src/index.js"></script>
 </body>
 
 </html>
