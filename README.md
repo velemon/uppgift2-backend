@@ -29,7 +29,7 @@ Tabellen **workexperience** innehåller följande fält:
 - enddate
 - description
 
-Kom igång:
+## Kom igång:
 1. Klona repot
 2. Öppna projektet i VS Code
 3. Installera beroenden (om Vite används):
